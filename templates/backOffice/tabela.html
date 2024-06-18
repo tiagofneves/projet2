@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CRUD Table with Bootstrap</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="../frontEnd/styles.css">
+</head>
+<body>
+  <div class="container mt-5">
+    <h1>Lista de Gastos</h1>
+    <table id="crudTable" class="table table-bordered">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Descrição</th>
+          <th>Valor</th>
+          <th>Data</th>
+          <th>Categoria</th>
+          <th>
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addModal"><i class="fa fa-solid fa-plus"></i> Novo</button>
+          </th>
+        </tr>
+      </thead>
+      <tbody id="listaGastos">
+        <!-- Conteúdo dinâmico -->
+      </tbody>
+    </table>
+
+    <!-- Pagination -->
+    <nav aria-label="Page navigation example">
+      <ul id="pagination" class="pagination justify-content-center"></ul>
+    </nav>
+
+    <!-- Add Modal -->
+    <div class="modal fade" id="addModal" tabindex="-1" aria-labelledby="addModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="addModalLabel">Adicionar Gasto</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <div class="mb-3">
+              <label for="id" class="form-label">ID</label>
+              <input type="text" class="form-control" id="mId" name="id" />
+            </div>
+            <div class="mb-3">
+              <label for="descricao" class="form-label">Descrição</label>
+              <input type="text" class="form-control" id="mDescricao" name="descricao" />
+            </div>
+            <div class="mb-3">
+              <label for="valor" class="form-label">Valor</label>
+              <input type="text" class="form-control" id="mValor" name="valor" />
+            </div>
+            <div class="mb-3">
+              <label for="data" class="form-label">Data</label>
+              <input type="date" class="form-control" id="mData" name="data" />
+            </div>
+            <div class="mb-3">
+              <label for="categoria" class="form-label">Categoria</label>
+              <input type="text" class="form-control" id="mCategoria" name="categoria" />
+            </div>
+            <button type="button" class="btn btn-primary" onclick="novoGasto()"><i class="fa-solid fa-floppy-disk"></i> Enviar</button>
+            <button type="reset" class="btn btn-success"><i class="fa-solid fa-shower"></i> Limpar</button>
+            <button type="button" class="btn btn-danger" data-bs-dismiss="modal" aria-label="Close"><i class="fa-solid fa-door-closed"></i> Fechar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Update Modal -->
+    <div class="modal fade" id="upModal" tabindex="-1" aria-labelledby="upModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="upModalLabel">Alterar Gasto</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <div class="mb-3">
+              <label for="id" class="form-label">ID</label>
+              <input type="text" class="form-control" id="muId" name="id" />
+            </div>
+            <div class="mb-3">
+              <label for="descricao" class="form-label">Descrição</label>
+              <input type="text" class="form-control" id="muDescricao" name="descricao" />
+            </div>
+            <div class="mb-3">
+              <label for="valor" class="form-label">Valor</label>
+              <input type="text" class="form-control" id="muValor" name="valor" />
+            </div>
+            <div class="mb-3">
+              <label for="data" class="form-label">Data</label>
+              <input type="date" class="form-control" id="muData" name="data" />
+            </div>
+            <div class="mb-3">
+              <label for="categoria" class="form-label">Categoria</label>
+              <input type="text" class="form-control" id="muCategoria" name="categoria" />
+            </div>
+            <button type="button" class="btn btn-primary" onclick="atualizaGasto()"><i class="fa-solid fa-floppy-disk"></i> Enviar</button>
+            <button type="reset" class="btn btn-success"><i class="fa-solid fa-shower"></i> Limpar</button>
+            <button type="button" class="btn btn-danger" data-bs-dismiss="modal" aria-label="Close"><i class="fa-solid fa-door-closed"></i> Fechar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Add Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+  <!-- Add custom JS -->
+  <script>
+    const listarGastos = async () => {
+      let strHtml = ``;
+      const response = await fetch("http://localhost:4242/api/pgs/gastos");
+      const lv = await response.json();
+      for (const gasto of lv) {
+        strHtml += `
+                  <tr>
+                      <td>${gasto.id}</td>
+                      <td>${gasto.descricao}</td>
+                      <td>${gasto.valor}</td>
+                      <td>${gasto.data}</td>
+                      <td>${gasto.categoria}</td>
+                      <td>
+                          <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#upModal" onclick="preparaEditGasto(${gasto.id})"><i class="fa fa-pencil"></i> Editar</button>
+                          <button type='button' class='btn btn-danger' onclick="apagaGasto(${gasto.id})"><i class="fa fa-trash"></i> Apagar</button>
+                      </td>
+                  </tr>
+                      `;
+      }
+      document.getElementById("listaGastos").innerHTML = strHtml;
+    };
+
+    listarGastos();
+
+    const novoGasto = async () => {
+      var dados = {
+        descricao: document.getElementById("mDescricao").value,
+        valor: document.getElementById("mValor").value,
+        data: document.getElementById("mData").value,
+        categoria: document.getElementById("mCategoria").value,
+      };
+      fetch("http://localhost:4242/api/pgs/gastos/create", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(dados),
+      })
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error("Erro ao obter os dados");
+          }
+          return response.json();
+        })
+        .then((data) => {
+          alert("O gasto foi adicionado com sucesso!");
+          listarGastos();
+        })
+        .catch((error) => {
+          console.error("Houve um erro:", error);
+        });
+    };
+
+    const apagaGasto = async (id) => {
+      fetch("http://localhost:4242/api/pgs/gastos/delete/" + id, {
+        method: "DELETE",
+        headers: { "Content-Type": "application/json" },
+      })
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error("Erro ao obter os dados");
+          }
+          return response;
+        })
+        .then((data) => {
+          alert("O gasto foi apagado com sucesso!");
+          listarGastos();
+        })
+        .catch((error) => {
+          console.error("Houve um erro:", error);
+        });
+    };
+
+    const preparaEditGasto = async (id) => {
+      const response = await fetch("http://localhost:4242/api/pgs/gastos/" + id);
+      const gasto = await response.json();
+      document.getElementById("muId").value = gasto.id;
+      document.getElementById("muDescricao").value = gasto.descricao;
+      document.getElementById("muValor").value = gasto.valor;
+      document.getElementById("muData").value = gasto.data;
+      document.getElementById("muCategoria").value = gasto.categoria;
+    };
+
+    const atualizaGasto = async () => {
+      var dados = {
+        id: document.getElementById("muId").value,
+        descricao: document.getElementById("muDescricao").value,
+        valor: document.getElementById("muValor").value,
+        data: document.getElementById("muData").value,
+        categoria: document.getElementById("muCategoria").value,
+      };
+      fetch("http://localhost:4242/api/pgs/gastos/update", {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(dados),
+      })
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error("Erro ao obter os dados");
+          }
+          return response.json();
+        })
+        .then((data) => {
+          alert("O gasto foi atualizado com sucesso!");
+          listarGastos();
+        })
+        .catch((error) => {
+          console.error("Houve um erro:", error);
+        });
+    };
+  </script>
+
+</body>
+</html>

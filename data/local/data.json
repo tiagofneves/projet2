@@ -1,0 +1,23 @@
+[
+    {
+      "Nome": "Bill Gates",
+      "Detalhes": "Idade: 68 anos, Patrimônio: 50 bilhões, Empresa: Microsoft, Nacionalidade: Estados Unidos",
+      "Foto": "frontEnd/imagens/CR.webp"
+    },
+    {
+      "Nome": "Mark Zuckerberg",
+      "Detalhes": "Idade: 38 anos, Patrimônio: 100 bilhões, Empresa: Facebook, Nacionalidade: Estados Unidos",
+      "Foto": "frontEnd/imagens/CR.webp"
+    },
+    {
+      "Nome": "CR7",
+      "Detalhes": "Idade: 36 anos, Patrimônio: 500 milhões, Empresa: Nike, Nacionalidade: Portugal",
+      "Foto": "frontEnd/imagens/CR.webp"
+    },
+    {
+      "Nome": "McGregor",
+      "Detalhes": "Idade: 32 anos, Patrimônio: 200 milhões, Empresa: Proper No. Twelve, Nacionalidade: Irlanda",
+      "Foto": "frontEnd/imagens/CR.webp"
+    }
+  ]
+  

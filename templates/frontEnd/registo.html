@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Registo - CashFlow</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="login">
+  <div class="container2">
+    <button type="button" class="btn btn-back custom-text-color" onclick="window.location.href='login.html'">Back</button>
+    <h2>Registo</h2>
+    
+    <form>
+      <div class="form-group">
+        <label for="username">Nome de utilizador:</label>
+        <input type="text" class="form-control" id="username" name="username">
+      </div>
+      <div class="form-group">
+        <label for="email">E-mail:</label>
+        <input type="email" class="form-control" id="email" name="email">
+      </div>
+      <div class="form-group">
+        <label for="password">Senha:</label>
+        <input type="password" class="form-control" id="password" name="password">
+        <div>
+          <p>Concordo com os <span class="terms-link" onclick="window.location.href='termos.html'">termos de uso</span></p>
+          <div class="cross"></div>
+        </div>
+      </div>
+      <button type="submit" class="btn btn-primary">Registar</button>
+    </form>
+  </div>
+</body>
+</html>
