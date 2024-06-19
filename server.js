@@ -14,19 +14,26 @@ const app = express();
 app.use(bodyParser.json());
 app.use(cors());
 
-// Middleware para servir arquivos estáticos
-app.use(express.static(path.join(__dirname, 'public')));
+// Servir arquivos estáticos da pasta 'public'
+app.use(express.static(path.join(__dirname, 'templates', )));
+
+
 
 // Rota padrão para a página principal
 app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, 'templates', 'frontEnd', 'Projeto.html'));
+    res.sendFile(path.join(__dirname, 'templates', 'frontEnd/Projeto.html'));
 });
+
+
 
 // Rotas da aplicação
 app.use('/', publicoRouter);
 app.use('/bo/', privadoRouter);
 app.use('/api/local/', routerLocal);
 app.use('/api/pgs/', routerPgs);
+
+//teste AUTH
+app.use(express.static('/templates'));
 
 const port = process.env.SERVER_PORT || 8080;
 app.listen(port, () => {

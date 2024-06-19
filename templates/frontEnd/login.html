@@ -23,6 +23,13 @@
       </div>
       <button type="button" class="btn btn-primary" onclick="window.location.href = 'perfil.html';">Entrar</button>
     </form>
+    <script>
+      document.getElementById('loginForm').addEventListener('submit', function(e) {
+        e.preventDefault(); // Impede o envio do formulário
+
+        window.location.href = '/perfil'; // Redireciona para perfil.html
+      });
+    </script>
     
     <div class="mt-3">
       <p>Não tem uma conta? <a href="registo.html">Registar agora</a></p>
