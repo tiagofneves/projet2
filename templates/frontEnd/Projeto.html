@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  <link rel="stylesheet" href="templates/frontEnd/styles.css">
+  <title>Finanças</title>
+</head>
+<style>
+  .image-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    text-align: center;
+  }
+  
+  .image-containere {
+  
+    
+    right: 20px;
+    text-align: center;
+   
+    
+  }
+  
+  .foto {
+    width: 100px;
+    margin-top: 20px;
+    margin-left: 20px;
+  }
+  
+  
+  
+
+
+  .pequena {
+    position: center;
+    top: 10px;
+    left: 0;
+    right: 0;
+    text-align: center;
+    width: 230px;
+  }
+
+  
+  .bg-beige {
+    background-color: rgb(211, 173, 91);
+}
+
+body.login {
+  background-color: beige;
+  background-image: url('logo.png');
+  background-size: 20%; 
+  background-position: center top;
+  background-repeat: no-repeat; 
+  height: 100vh; 
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-direction: column;
+  
+}
+
+body.about {
+  background-color: beige; 
+  background-image: url('logo.png');
+  background-size: 20%; 
+  background-position: center top; 
+  background-repeat: no-repeat; 
+  height: 100vh; 
+  margin: 0; 
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-direction: column;
+  
+}
+
+.btn-back {
+  position: absolute;
+  top: 10px;
+  color: white; 
+  left: 20px;
+  background-color: rgb(211, 173, 91);;
+  border-color: rgb(211, 173, 91);;
+}
+
+.btn-back:hover {
+  background-color: rgb(210, 153, 30);;
+  border-color: rgb(210, 153, 30);; 
+}
+
+.btn-primary {
+  background-color: rgb(211, 173, 91);; 
+  border-color: rgb(211, 173, 91);; 
+}
+
+
+.btn-primary:hover {
+  background-color: rgb(210, 153, 30);;
+  border-color: rgb(210, 153, 30);; 
+}
+
+.navbar-nav .nav-link {
+  color: rgba(255, 255, 255, 0.725) !important; 
+}
+
+
+.container {
+  max-width: 400%; 
+  margin-top: 20px; 
+  margin-left: 50px;
+}
+
+.container2 {
+  max-width: 400%; 
+  margin-top: 20px; 
+  margin: 20px auto;
+  justify-content: center;
+}
+
+h2{
+  color: rgb(211, 173, 91); 
+
+  margin-bottom: 30px; 
+  font-family: Candara, sans-serif;
+  margin-top: 80px;
+}
+
+h3{
+  color: rgb(211, 173, 91); 
+  margin-left: 60px;
+ font-size: 35px;
+  margin-bottom: 30px; 
+  font-family: Candara, sans-serif;
+  margin-top: 80px;
+}
+
+h1{
+  
+  text-align: center; 
+  margin-bottom: 30px; 
+  font-family: Candara, sans-serif;
+  font-size: 1.5rem;
+}
+
+label.login {
+  font-weight: bold; 
+}
+
+form.login {
+  background-color: #ffffff; 
+  padding: 20px;
+  border-radius: 10px; 
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+button[type="submit"] {
+  width: 100%; 
+  background-color: rgb(211, 173, 91); 
+  border-color: rgb(211, 173, 91);
+}
+
+.mt-3 {
+  text-align: center; 
+}
+
+
+body {
+  background-color: beige; 
+}
+
+.image-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.image-container img {
+  max-width: 80%;
+  max-height: 80%;
+}
+
+
+.custom-text-color {
+  color: white;
+}
+
+.custom-text-color:hover {
+  color: white;
+}
+
+.georgia-font {
+  font-family: Georgia, serif;
+  font-size: 21px;
+  color: rgb(137, 97, 16);
+}
+
+
+.card {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 35px;
+  margin: 16px;
+  display: inline-block;
+  width: 300;
+  text-align: center;
+  cursor: pointer;
+
+  img {
+    width: 150px;
+  margin-bottom: 8px;
+  align-items: center;
+  }
+}
+
+
+
+
+
+#popup {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  padding: 50px;
+  border: 1px solid black;
+  border-radius: 8px;
+  z-index: 1000;
+}
+
+#popup-background {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+}
+
+.cross {
+  width: 20px; 
+  height: 20px; 
+  border: 1px solid black; 
+  position: absolute; 
+  right: 0; 
+  top: 50%; 
+  transform: translateY(-50%); 
+  cursor: pointer; 
+}
+
+.terms-link {
+  color: blue; 
+  text-decoration: underline; 
+  cursor: pointer; 
+}
+
+.square {
+  width: 20px;
+  height: 20px; 
+  border: 1px solid black; 
+  position: absolute; 
+  left: -25px; 
+  top: 50%; 
+  transform: translateY(-50%); 
+  cursor: pointer; 
+}
+
+table {
+  width: 95%;
+  border-collapse: separate;
+  margin-left: 50px;
+  background-color: #f6d70a00;
+}
+th, td {
+  margin-left: 50px;
+  padding: 8px;
+  text-align: left;
+  border-bottom: 1px solid rgb(197, 155, 64);;
+  color: rgb(136, 90, 4);
+}
+th {
+  background-color: rgb(211, 173, 91); 
+  margin-left: 50px;
+}
+body, html {
+  height: 100%;
+}
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+.image-container {
+  text-align: center;
+}
+.quote {
+  font-size: 1.2rem;
+  margin-top: 250px;
+  font-family: Candara, sans-serif;
+  margin-left: 22px;
+}
+.card {
+  width: 100%;
+  margin: 10px;
+}
+.card img {
+  max-height: 200px;
+  object-fit: cover;
+}
+</style>
+<body>
+  <div class="container">
+    <div class="image-container">
+      <img src="templates/frontEnd/imagens/logo.png" alt="Logo" style="max-width: 80%; max-height: 80%;">
+    </div>
+    <p class="quote">"Não guarde o que sobra depois de gastar; gaste o que sobra depois de guardar."</p>
+    <h1><em>Warren Buffett</em></h1>
+  </div>
+
+  <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-beige">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav mx-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="login.html" style="margin-right: 15px;">Iniciar sessão</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="about.html" style="margin-right: 15px;">Sobre Nós</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="functions.html" style="margin-right: 15px;">Funções</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="container">
+    <h1>Pessoas influentes no mundo da economia</h1>
+    <div class="row" id="cardInfluentes">
+      <!-- Cards serão carregados dinamicamente aqui -->
+    </div>
+  </div>
+
+  <!-- Modal para detalhes das pessoas influentes -->
+  <div class="modal" id="myModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title" id="mtitulo">Detalhes</h4>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <!-- Modal body -->
+        <div class="modal-body" id="mdetalhe">Informações detalhadas</div>
+        <img class="img-fluid" id="mImagem" src="...." alt="Imagem">
+        <!-- Modal footer -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Fechar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function carregaModal(titulo, detalhe, elemento) {
+      document.getElementById("mtitulo").innerHTML = titulo;
+      document.getElementById("mdetalhe").innerHTML = detalhe;
+      document.getElementById("mImagem").src = elemento.parentNode.parentNode.firstElementChild.getAttribute("src");
+    }
+
+    const atualizarInfluentes = async () => {
+      let strHtml = ``;
+      // Simulação de uma chamada de API - substitua isso com sua própria chamada de API
+      const lv = [
+        { Nome: "Bill Gates", Detalhes: "Idade: 68 anos, Patrimônio: 50 bilhões, Empresa: Microsoft, Nacionalidade: Estados Unidos", Foto: "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%3Fid%3DOIP.gckyAQbzwXxQaBSWC_a8nQEsDa%26pid%3DApi&f=1&ipt=280a64995051048730c32515bbf2e305d4d0eed7e103528de64984f6bd371ffd&ipo=images" },
+        { Nome: "Mark Zuckerberg", Detalhes: "Idade: 38 anos, Patrimônio: 100 bilhões, Empresa: Facebook, Nacionalidade: Estados Unidos", Foto: "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%3Fid%3DOIP.h4cdQNVTO8wAdPwBw31LgwAAAA%26pid%3DApi&f=1&ipt=3220980b908eecd1514f2b65b95a90bdfae919b2c88daa65cbd5424732b10bd8&ipo=images" },
+        { Nome: "CR7", Detalhes: "Idade: 36 anos, Patrimônio: 500 milhões, Empresa: Nike, Nacionalidade: Portugal", Foto: "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse2.mm.bing.net%2Fth%3Fid%3DOIP.FbEUr2fs2Z1NazchVp7jPQHaEK%26pid%3DApi&f=1&ipt=fc5baffbd968362dd249127b72a1c05fba763aab1ca4a7ba44ad59714f363709&ipo=images" },
+        { Nome: "McGregor", Detalhes: "Idade: 32 anos, Patrimônio: 200 milhões, Empresa: Proper No. Twelve, Nacionalidade: Irlanda", Foto: "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse2.mm.bing.net%2Fth%3Fid%3DOIP.cDZOSY4Dm52yCpKqdCO3AgHaEL%26pid%3DApi&f=1&ipt=c89486494a91842aee469a4c43a60bbc2ca2dadc121f678e7b997d443588624a&ipo=images" }
+      ];
+
+      for (const artigo of lv) {
+        strHtml += `
+          <div class="col-md-6">
+            <div class="card">
+              <img class="card-img-top" src="${artigo.Foto}" alt="${artigo.Nome}">
+              <div class="card-body">
+                <h4 class="card-title">${artigo.Nome}</h4>
+                <a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal" onclick="carregaModal('${artigo.Nome}', '${artigo.Detalhes}', this)">Ver detalhes</a>
+              </div>
+            </div>
+          </div>`;
+      }
+      document.getElementById("cardInfluentes").innerHTML = strHtml;
+    };
+
+    atualizarInfluentes();
+  </script>
+  <script src="/js/script.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+</body>
+</html>
