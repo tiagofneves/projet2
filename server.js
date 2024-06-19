@@ -26,6 +26,7 @@ app.get('/', (req, res) => {
 
 
 
+
 // Rotas da aplicação
 app.use('/', publicoRouter);
 app.use('/bo/', privadoRouter);
@@ -35,7 +36,8 @@ app.use('/api/pgs/', routerPgs);
 //teste AUTH
 app.use(express.static('/templates'));
 
-const port = process.env.SERVER_PORT || 8080;
+//const port = process.env.SERVER_PORT || 8080;
 app.listen(port, () => {
     console.log(`Express server listening on port ${port}`);
-});
+}); 
+

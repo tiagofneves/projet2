@@ -11,19 +11,19 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/alfZone/webServicePgs.git"
+    "url": "git+https://github.com/tiagofneves/projet2.git"
   },
   "keywords": [
     "ws",
     "api",
     "js"
   ],
-  "author": "António Lira Fernandes",
+  "author": "Tiago Neves",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/alfZone/postgres/issues"
+    "url": "https://github.com/tiagofneves/projet2.git"
   },
-  "homepage": "https://github.com/alfZone/postgres#readme",
+  "homepage": "https://github.com/tiagofneves/projet2#readme",
   "dependencies": {
     "@prisma/client": "^5.15.0",
     "body-parser": "^1.20.2",
